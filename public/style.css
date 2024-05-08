@@ -1,0 +1,9 @@
+body {
+    font-family: consolas, Monaco, "andale mono", monospace;
+    }
+    .Central {
+               min-height: 250px ;
+    }
+    a {
+        text-decoration: none;
+    }
