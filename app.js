@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.urlencoded({ extend: false }));
 app.use('/public', express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -29,10 +29,10 @@ app.get('/movies/add', (req, res) => {
     res.send('Prochainement, un formulaire d\'ajout ici.');
 });
 
-app.get('/movies/:id', (req, res) => {
-    const id = req.params.id;
-    res.render('movies-details', { movieid: id });
-});
+//app.get('/movies/:id', (req, res) => {
+  //  const id = req.params.id;
+ //   res.render('movies-details', { movieid: id });
+//});
 
 app.get('/', (req, res) => {
     res.render('index');
