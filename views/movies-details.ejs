@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="../public/style.css"/>
 </head>
 <body>
-    <h1> Details de <%= movietitle %>  </h1>
+    <%- include('./partials/header') %>
+
+    <h1> Details  </h1>
+
     <div>
         <%= movieid %>
     </div>
-        
+
+    <% include('./partials/footer') %>
+
 </body>
 </html>
