@@ -13,8 +13,15 @@ app.set('view engine', 'ejs')
 //})
 
 app.get('/movies', (req, res) => {
-     //res.send('bientot des filmes ici');
-     res.render('movies')
+    const title = 'Films francais des 20 dernieres années';
+
+     const frenchMovies =[
+        {title:'Josephine ange gardien', years: 2001},
+        {title:'Le fabuleau destin de anne pline', years: 2003},
+        {title:'les sept merveilles', years: 2008},
+        {title:'le gardien de la galaxy', years: 2024}
+     ];
+     res.render('movies', {movies: frenchMovies, title: title})
 });
 
 app.get('/movies/add', (req, res) =>{
