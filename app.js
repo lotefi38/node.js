@@ -21,7 +21,8 @@ app.get('/movies', (req, res) => {
 });
 
 app.post('/movies', (req, res) => {
-    console.log(req.body);
+    console.log('le titre:', req.body.movietitle);
+    console.log('année:', req.body.movieyear);
     res.sendStatus(201);
 });
 
