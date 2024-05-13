@@ -8,11 +8,11 @@
 </head>
 <body>
 <div class="central">
-    <%- include ('./partials/header') %>
-
+    <% include ('./partials/header') %>
+    
     <h1><%= title %></h1>
 
-    <div>
+    <div class="french-movies">
        <% for(movie of movies) { %>
        <div> <%= movie.title %> (<%= movie.years %>) </div>
        <% } %>
@@ -37,33 +37,35 @@
     form.addEventListener('submit', addMovie);
 
     function addMovie (event){
-        event.preventDefault;
+        event.preventDefault();
         if(fetch){
             fetch('/movies',{
             method : 'post',
-            body: new FormData('form')
+            body: new FormData(form)
         })
-        .then(checkstatus)
+        .then(checkStatus)
         .catch(function(error){
-            console.error('request failed', error);
+            console.error('La requête a échoué', error);
         })
         }
         else{
-            //jQuery, XHR
+            console.error('fetch n\'est pas pris en charge');
+            // Utiliser jQuery, XHR, etc.
         }
-}
-function checkstatus(response) {
-    if(response.status >= 200 && response.status < 300){
-       let newMovieDiv = doccument.creatElement('div');
-       const movietitle = docuument.getElementById(movietitle).value;
-       const movieyear = doccument.getElementById(movieyear).value;
-       //newMovieDiv.innerHTML = `${movietitle} (${movieyear})`;
-       newMovieDiv.innerHTML = movietitle +' '+'('+movieyear+')';
-       
-
     }
-}
 
+    function checkStatus(response) {
+        if (response.status >= 200 && response.status < 300) {
+            const newMovieDiv = document.createElement('div');
+            const movietitle = document.getElementById('movietitle').value;
+            const movieyear = document.getElementById('movieyear').value;
+            newMovieDiv.textContent = `${movietitle} (${movieyear})`;
+            document.querySelector('.french-movies').appendChild(newMovieDiv);
+            form.reset();
+        } else {
+            console.error('La requête a échoué avec un statut : ' + response.status);
+        }
+    }
 </script>
 </body>
 </html>
