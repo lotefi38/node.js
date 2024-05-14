@@ -1,12 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const multer = require('multer');
+const upload = multer();
+
 const port = 3000;
 
 let frenchMovies=[];
 
 app.use('/public', express.static('public'));
-app.use(bodyParser.urlencoded({ extended: false }));
+
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -22,14 +26,19 @@ app.get('/movies', (req, res) => {
     res.render('movies', { movies: frenchMovies, title: title });
 });
 
-app.post('/movies', (req, res) => {
-    console.log('le titre:', req.body.movietitle);
-    console.log('année:', req.body.movieyear);
-    const newMovies = {titre: req.body.movietitle, Année: req.body.movieyear };
-    frenchMovies = [...frenchMovies, newMovies];
-    console.log(frenchMovies);
-    res.sendStatus(201);
-});
+//app.post('/movies', (req, res) => {
+    // console.log('le titre:', req.body.movietitle);
+    // console.log('année:', req.body.movieyear);
+    // const newMovies = {titre: req.body.movietitle, Année: req.body.movieyear };
+//     frenchMovies = [...frenchMovies, newMovies];
+//     console.log(frenchMovies);
+//     res.sendStatus(201);
+// });
+
+app.post('/movie', upload, (req, res) =>{
+    
+})
+
 
 app.get('/movies/add', (req, res) => {
     res.send('Prochainement, un formulaire d\'ajout ici.');
