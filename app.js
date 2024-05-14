@@ -10,7 +10,7 @@ let frenchMovies=[];
 
 app.use('/public', express.static('public'));
 
- //app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -35,12 +35,13 @@ app.get('/movies', (req, res) => {
 //     res.sendStatus(201);
 // });
 
-app.post('/movie', upload.failed([]), (req, res) =>{
+app.post('/movies', upload.fields([]), (req, res) =>{
 if(!req.body){
     return res.sendStatus(500);
 }else{
     const formdata = req.body;
     console.log('formData:', formdata);
+    const newMovies = {titre: req.body.movietitle, Année: req.body.movieyear };
     frenchMovies = [...frenchMovies, newMovies];
         console.log(frenchMovies);
         res.sendStatus(201);
